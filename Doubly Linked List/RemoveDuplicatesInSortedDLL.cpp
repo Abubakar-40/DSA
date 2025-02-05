@@ -16,7 +16,7 @@ public:
         }
         struct Node* curr = head->next;
         while(curr){
-            struct Node*save = curr->next;
+            struct Node*save =  curr->next;
             if(curr->data == curr->prev->data){
                 if(curr->prev)
                     curr->prev->next = curr->next;
