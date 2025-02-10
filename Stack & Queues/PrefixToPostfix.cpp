@@ -96,3 +96,50 @@ class Solution {
         
     }
 };
+
+
+// Approach # 2
+
+// Time Complexity : O(N)
+// Space Complexity : O(N)
+
+// This Approach is more or less same like Prefix to Infix. 
+// In Prefix to Infix, we used to do --> operand1 + operator + operand2
+// But in Prefix to PostFix, we will do --> operand1 + operand2 + operator
+// Here + refers to concatenation
+// This Approach is better than Approach 1. Although Both are in O(N), but this Approach is
+// more tight bound than first one
+
+class Solution {
+  public:
+    string preToPost(string pre_exp) {
+        
+        string result;
+        stack<string> stk;
+        for(int i = pre_exp.size() - 1; i>=0; i--){
+            char ch = pre_exp[i];
+            if(ch == ' '){
+                continue;
+            }
+            else if(isOperand(ch)){
+                stk.push(string(1,ch));
+            }
+            else{
+                string op1 = stk.top();
+                stk.pop();
+                string op2 = stk.top();
+                stk.pop();
+                string temp = op1+op2+ch;
+                stk.push(temp);
+            }
+        }
+        result = stk.top();
+        stk.pop();
+        return result;
+    }
+    bool isOperand(char ch){
+        if((ch>='a' && ch<='z') || (ch>='A' && ch<='Z') || (ch>='1' && ch<='9'))
+            return true;
+        return false;
+    }
+};
