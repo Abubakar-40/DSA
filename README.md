@@ -1,1 +1,1 @@
-# DSA
+# Striver's A2Z DSA
